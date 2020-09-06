@@ -1,4 +1,4 @@
-# Stochastic SoundCloud : Lucy’s New Mozart Mixtape 
+# Stochastic SoundCloud : Lucy’s New Mozart Mixtape 🔥
 
 Machine Learning Generative Music
 
