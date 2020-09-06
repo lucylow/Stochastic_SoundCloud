@@ -38,9 +38,45 @@ Machine Learning Generative Music
 ---
 
 ## Music Dataset
-* Mozart's Modern Classical composition - Download and unzip classical music files from : https://github.com/lucylow/Stochastic_SoundCloud/blob/master/data/classical%20music%20dataset.zip
+* Use pre-trained data
+  * Mozart's Modern Classical composition Download and unzip classical music files from : https://github.com/lucylow/Stochastic_SoundCloud/blob/master/data/classical%20music%20dataset.zip
+  * /config where there are four possible .mag bundle files
+    * basic_rnn
+    * mono_rnn
+    * lookback_rnn
+    * attention_rnn
+    
+* Build your own dadaset 
+  * Musical Instrument Digital Interface (MIDI) dataset for music analysis. 
+  * Choose a dataset then convert MIDI files into NoteSequences:
+    * https://composing.ai/dataset
+    * http://www.piano-midi.de/
+    * https://magenta.tensorflow.org/datasets/nsynth
+    * https://magenta.tensorflow.org/datasets/maestro
+    * https://magenta.tensorflow.org/datasets/groove
+    * https://magenta.tensorflow.org/datasets/e-gmd
+    * https://magenta.tensorflow.org/datasets/bach-doodle
+    * http://abc.sourceforge.net/NMD/ 
+    * http://musedata.stanford.edu/
+    * https://github.com/mdeff/fma
+    * http://www.piano-midi.de/albeniz.htm
+    * http://www.piano-midi.de/bach.htm
+    * http://www.piano-midi.de/beeth.htm
+    * http://www.piano-midi.de/mozart.htm
+  
+    """
+    INPUT_DIRECTORY=<folder containing MIDI and/or MusicXML files. can have child folders.>
 
+    # Convert to NoteSequences
+    SEQUENCES_TFRECORD=/tmp/notesequences.tfrecord
 
+    convert_dir_to_note_sequences \
+      --input_dir=$INPUT_DIRECTORY \
+      --output_file=$SEQUENCES_TFRECORD \
+      --recursive
+    """
+   * NoteSequences were output to /tmp/notesequences.tfrecord
+   
 ---
 ## Technical Tools
 * Python 3 (>= 3.5)
@@ -60,6 +96,15 @@ Use Anaconda python packages:
 Run Magenta using Python programs or Juypter Notebook
 > source activate magenta
 
+Clone this repository
+> git clone https://github.com/lucylow/Stochastic_SoundCloud.git
+
+Install the dependencies
+> pip install -e .
+
+Run the **melody_rnn_generate script** from the base directory
+> python Stochastic_SoundCloud/melody_rnn/melody_rnn_generate --config=...
+
 
 ---
 ## Machine Learning Model: LSTM RNN 
@@ -77,13 +122,17 @@ Run Magenta using Python programs or Juypter Notebook
 
 3) Attention RNN
 
-
+https://arxiv.org/abs/1409.0473
 
 ---
 
 ## References
 * Iannis Xenakis. Formalized Music 
 * Google Tensorflow Magenta: Melody RNN https://github.com/magenta/magenta / https://magenta.tensorflow.org/
+* Generating Long-Term Structure in Songs and Stories https://magenta.tensorflow.org/2016/07/15/lookback-rnn-attention-rnn/
+* The Attention Method we use here: Neural Machine Translation by Jointly Learning to Align and Translate https://arxiv.org/abs/1409.0473
+* Composing Music With Recurrent Neural Networks http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/
+* More on note sequences for dataset building https://developers.google.com/protocol-buffers/
 * Carnegie Mellon University https://www.link.cs.cmu.edu/melody-generator/
 * https://random-music-generators.herokuapp.com/melody
 
