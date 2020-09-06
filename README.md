@@ -38,17 +38,16 @@ Machine Learning Generative Music
 ---
 
 ## Music Dataset
-* Use pre-trained data
+* **Use pre-trained data:**
   * Mozart's Modern Classical composition Download and unzip classical music files from : https://github.com/lucylow/Stochastic_SoundCloud/blob/master/data/classical%20music%20dataset.zip
-  * /config where there are four possible .mag bundle files
-    * basic_rnn
-    * mono_rnn
-    * lookback_rnn
-    * attention_rnn
+  * There are four possible .mag bundle files at https://github.com/lucylow/Stochastic_SoundCloud/tree/master/config%20files
+    * Basic_rnn
+    * Mono_rnn
+    * Lookback_rnn
+    * Attention_rnn
     
-* Build your own dadaset 
-  * Musical Instrument Digital Interface (MIDI) dataset for music analysis. 
-  * Choose a dataset then convert MIDI files into NoteSequences:
+* **Build your own dataset:**
+  * Choose a dataset then convert Musical Instrument Digital Interface (MIDI) files into NoteSequence datatype for the Stochastic SoundCloud:
     * https://composing.ai/dataset
     * http://www.piano-midi.de/
     * https://magenta.tensorflow.org/datasets/nsynth
@@ -64,18 +63,16 @@ Machine Learning Generative Music
     * http://www.piano-midi.de/beeth.htm
     * http://www.piano-midi.de/mozart.htm
   
-    """
-    INPUT_DIRECTORY=<folder containing MIDI and/or MusicXML files. can have child folders.>
 
-    # Convert to NoteSequences
-    SEQUENCES_TFRECORD=/tmp/notesequences.tfrecord
+   > INPUT_DIRECTORY=<folder containing MIDI and/or MusicXML files. can have child folders.>
+   > SEQUENCES_TFRECORD=/tmp/notesequences.tfrecord
 
-    convert_dir_to_note_sequences \
-      --input_dir=$INPUT_DIRECTORY \
-      --output_file=$SEQUENCES_TFRECORD \
-      --recursive
-    """
-   * NoteSequences were output to /tmp/notesequences.tfrecord
+   > convert_dir_to_note_sequences \
+   >   --input_dir=$INPUT_DIRECTORY \
+   >   --output_file=$SEQUENCES_TFRECORD \
+   >   --recursive
+
+  * NoteSequences are outputted to /tmp/notesequences.tfrecord
    
 ---
 ## Technical Tools
@@ -122,7 +119,7 @@ Run the **melody_rnn_generate script** from the base directory
 
 3) Attention RNN
 
-https://arxiv.org/abs/1409.0473
+
 
 ---
 
