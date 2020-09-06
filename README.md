@@ -39,18 +39,29 @@ Machine Learning Generative Music
 
 ## Music Dataset
 * Mozart's Modern Classical composition
-* 
+* Download multiple classical music files of a digital piano from numerous resources: https://drive.google.com/file/d/1qnQVK17DNVkU19MgVA4Vg88zRDvwCRXw/view 
 
 
 ---
 ## Technical Tools
-* Python
+* Python 3 (>= 3.5)
 * [Magenta for Tensorflow](https://magenta.tensorflow.org/) with the 3 pre-trained LSTM models:
   1) Basic RNN (basic one hot encoding)
   2) Lookback RNN
   3) Attention RNN (looks at bunch of previous steps)
 * GarageBand for Mac
   
+---
+## Installation 
+Use Anaconda python packages:
+
+> curl https://raw.githubusercontent.com/tensorflow/magenta/master/magenta/tools/magenta-install.sh > /tmp/magenta-install.sh
+> bash /tmp/magenta-install.sh
+
+Run Magenta using Python programs or Juypter Notebook
+> source activate magenta
+
+
 ---
 ## Machine Learning Model: LSTM RNN 
 
@@ -73,3 +84,4 @@ Machine Learning Generative Music
 
 ## References
 * Iannis Xenakis. Formalized Music 
+* Google Tensorflow Magenta: Melody RNN https://github.com/magenta/magenta / https://magenta.tensorflow.org/
