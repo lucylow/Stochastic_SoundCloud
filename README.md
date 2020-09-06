@@ -43,7 +43,7 @@ Machine Learning Generative Music
 ---
 ## Technical Tools
 * Python
-* ![Magenta for Tensorflow](https://magenta.tensorflow.org/) with the 3 pre-trained LSTM models:
+* [Magenta for Tensorflow](https://magenta.tensorflow.org/) with the 3 pre-trained LSTM models:
   1) Basic RNN (basic one hot encoding)
   2) Lookback RNN
   3) Attention RNN (looks at bunch of previous steps)
