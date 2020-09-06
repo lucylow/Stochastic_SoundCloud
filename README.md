@@ -47,14 +47,12 @@ Machine Learning Generative Music
     * Attention_rnn
     
 * **Build your own dataset:**
-  * Choose a dataset then convert Musical Instrument Digital Interface (MIDI) files into NoteSequence datatype for the Stochastic SoundCloud:
+  * Choose a Musical Instrument Digital Interface (MIDI) dataset from the list below
     * https://composing.ai/dataset
     * http://www.piano-midi.de/
     * https://magenta.tensorflow.org/datasets/nsynth
     * https://magenta.tensorflow.org/datasets/maestro
     * https://magenta.tensorflow.org/datasets/groove
-    * https://magenta.tensorflow.org/datasets/e-gmd
-    * https://magenta.tensorflow.org/datasets/bach-doodle
     * http://abc.sourceforge.net/NMD/ 
     * http://musedata.stanford.edu/
     * https://github.com/mdeff/fma
@@ -62,17 +60,17 @@ Machine Learning Generative Music
     * http://www.piano-midi.de/bach.htm
     * http://www.piano-midi.de/beeth.htm
     * http://www.piano-midi.de/mozart.htm
-  
+     
+ * Convert MIDI into NoteSequence datatype for the Stochastic SoundCloud:
 
-   > INPUT_DIRECTORY=<folder containing MIDI and/or MusicXML files. can have child folders.>
+   > INPUT_DIRECTORY=<folder_name_here>
    > SEQUENCES_TFRECORD=/tmp/notesequences.tfrecord
-
    > convert_dir_to_note_sequences \
    >   --input_dir=$INPUT_DIRECTORY \
    >   --output_file=$SEQUENCES_TFRECORD \
    >   --recursive
 
-  * NoteSequences are outputted to /tmp/notesequences.tfrecord
+* NoteSequences are outputted to /tmp/notesequences.tfrecord
    
 ---
 ## Technical Tools
