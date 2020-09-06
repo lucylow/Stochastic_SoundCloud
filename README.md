@@ -38,8 +38,7 @@ Machine Learning Generative Music
 ---
 
 ## Music Dataset
-* Mozart's Modern Classical composition
-* Download multiple classical music files of a digital piano from numerous resources: https://drive.google.com/file/d/1qnQVK17DNVkU19MgVA4Vg88zRDvwCRXw/view 
+* Mozart's Modern Classical composition - Download and unzip classical music files from : https://github.com/lucylow/Stochastic_SoundCloud/blob/master/data/classical%20music%20dataset.zip
 
 
 ---
@@ -68,15 +67,15 @@ Run Magenta using Python programs or Juypter Notebook
 
 
 ---
-## Results 1) Basic RNN 
+## Results 
+
+1) Basic RNN 
 
 
----
-## Results 2) Lookback RNN
+2) Lookback RNN
 
 
----
-## Results 3) Attention RNN
+3) Attention RNN
 
 
 
@@ -85,3 +84,6 @@ Run Magenta using Python programs or Juypter Notebook
 ## References
 * Iannis Xenakis. Formalized Music 
 * Google Tensorflow Magenta: Melody RNN https://github.com/magenta/magenta / https://magenta.tensorflow.org/
+* Carnegie Mellon University https://www.link.cs.cmu.edu/melody-generator/
+* https://random-music-generators.herokuapp.com/melody
+
