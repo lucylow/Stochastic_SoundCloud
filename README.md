@@ -12,7 +12,8 @@ Machine Learning Generative Music
 </div>
 
 ![CATS ARE SO CUTE](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/Music%20Generation%20AI.png)
-*Albumn Cover. LUCY's New_Mozart_Mixtape now available on Stochastic_SoundCloud for the LOW price of $3.99. Featuring new up coming rapper TensorFlow_AI*
+*Album Cover. LUCY's New_Mozart_Mixtape now available on Stochastic_SoundCloud for the LOW price of $3.99. Featuring new up coming rapper TensorFlow_AI*
+
 --------
 
 ## Motivation 
