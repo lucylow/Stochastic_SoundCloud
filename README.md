@@ -11,7 +11,7 @@ Machine Learning Generative Music
 
 </div>
 
-
+![CATS ARE SO CUTE](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/Music%20Generation%20AI.png)
 --------
 
 ## Motivation 
