@@ -24,7 +24,7 @@ Machine Learning Generative Music
 * ***“If I were not a physicist, I would probably be a musician. I often think in music. I live my daydreams in music. I see my life in terms of music.”* – Albert Einstein"**
 * In 1958 Iannis Xenakis used Markov Chains, a stochastic process by which a system can make predictions on the future based on its present state, to compose Analogique (refer to image below). Modelling the probability of a note occuring after a sequence of notes since all music is sequential:
 
-!(music)[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Iannis%20Xenakis%20Markov%20Chains.png]
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Iannis%20Xenakis%20Markov%20Chains.png)
 *Iannis Xenakis's Analogique B. The first musical composition written using the method of "stocastic music"*
 
 
@@ -38,8 +38,8 @@ Machine Learning Generative Music
   * **Weiner Brownian motion** process to study the diffusion of tiny particles suspended in fluid (also used as a solution to the Schrödinger equation)
   * **Poisson process** to study the number of phone calls occurring in a certain period of time
 
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Wiener_process_animated.gif]
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.15%20AM.png]
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Wiener_process_animated.gif)
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.15%20AM.png)
 
 
 ---
@@ -53,7 +53,7 @@ Machine Learning Generative Music
 ## Theory Classical Music Concepts and Melody Representation
 * sequential data hence choose RNN/LSTM model
 
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.05.51%20PM.png]
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.05.51%20PM.png)
 
 **Piano Roll Representation**
 * a piano-roll representation is a binary-valued, scoresheet-like matrix representing the presence of notes
@@ -63,7 +63,7 @@ over different time steps
 * piano-roll of each bar, each track, for boththe real and the generated data, is represented as a fixed-size
 matrix, which makes the use of neural network
 
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%208.56.36%20PM.png]
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%208.56.36%20PM.png)
 *The red bar represents the piano roll of the score*
 
 **MIDI Notation**
@@ -72,7 +72,7 @@ matrix, which makes the use of neural network
   * x axis = time sequence
   * y axis = notes on a piano keyboard 
 
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.48.54%20AM.png]
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.48.54%20AM.png)
 *Midi numbers for each note name on the piano key board.*
 
 melody, often known as tune, voice, or line, is a linear succession of musical notes, and each note represents the pitch and duration of a sound
@@ -82,13 +82,13 @@ Each musical piece has a key chosen from 12 notes in an octave
 we can transpose all of the musical pieces to key C, while maintaining the relative relationship between
 notes. The generated pieces can be transposed to any key. About 99.83% of notes have pitches between C2 and C5
 
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.54%20AM.png]
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.54%20AM.png)
 
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.50.47%20AM.png]
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.50.47%20AM.png)
 
 every bar was discretized into 16 time steps. At every time step, there are 38 kinds of events (36 note-on events, one note-off event and one no-event), which are exclusive
 
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.06.13%20PM.png]
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.06.13%20PM.png)
 So a 38-dimensional one-hot vector is used to represent the melody at every timestep.
 
 
@@ -124,7 +124,7 @@ LSTM RNN network
 The LSTM RNN consists of an input layer, an output layer and optionally hidden layers between the input and output layer. The chord sequences need to be within one octave and
 the belonging melodies within two octaves
 
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.13.14%20PM.png]
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.13.14%20PM.png)
 *LSTM RNN architecture with the MIDI input matrix*
 
 Modelling the temporal structure 
@@ -133,7 +133,7 @@ Modelling the temporal structure
 **Melody Generation**
 General Architecture: Train the LSTM Recurrent Neural Network to compose a melody. Lookback and Attention RNNs are proposed to tackle the problem of creating melody’s long-term structure. It needs to be fed with a chord sequence and will then output a Prediction Matrix, which can be transformed into a piano roll matrix and finally into a melody MIDI file.
 
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.20.00%20AM.png]
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.20.00%20AM.png)
 
 
 Input --> Target
@@ -166,9 +166,8 @@ To avoid over-fitting, dropout with ratio 0.5
 ## Technical Music Dataset
 * **Use pre-trained data:**
   * Mozart's Modern Classical composition Download and unzip classical music files from : https://github.com/lucylow/Stochastic_SoundCloud/blob/master/data/classical%20music%20dataset.zip
-  * There are four possible .mag bundle files at https://github.com/lucylow/Stochastic_SoundCloud/tree/master/config%20files
+  * There are three possible .mag bundle files at https://github.com/lucylow/Stochastic_SoundCloud/tree/master/config%20files
     * Basic_rnn
-    * Mono_rnn
     * Lookback_rnn
     * Attention_rnn
     
@@ -190,7 +189,9 @@ To avoid over-fitting, dropout with ratio 0.5
  * Convert MIDI into NoteSequence datatype for the Stochastic SoundCloud:
 
    > INPUT_DIRECTORY=<folder_name_here>
+   
    > SEQUENCES_TFRECORD=/tmp/notesequences.tfrecord
+   
    > convert_dir_to_note_sequences \
    >   --input_dir=$INPUT_DIRECTORY \
    >   --output_file=$SEQUENCES_TFRECORD \
@@ -240,15 +241,15 @@ Run the **melody_rnn_generate script** from the base directory
 ---
 ## Results 
 
-**Basic_rnn**
+**Basic RNN**
   * Note by note basis (monotonic)
   * one-hot encoding == melody
   * pitch range [48 to 84]
   * Basic two-three notes
   
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%209.05.48%20PM.png] 
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%209.05.48%20PM.png)
   
-**Lookback_rnn**
+**Lookback RNN**
   * Patterns that occur over one or two measures/bars in a song 
   * Lookback feature that makes the model repeat sequences easier
   * Generating Long-term Strucutre in Songs and Stories
@@ -257,7 +258,7 @@ Run the **melody_rnn_generate script** from the base directory
   * Results in more "repetitive" beats 
   * Lookback RNN outperformed the Attention RNN 
   
-**Attention_rnn** 
+**Attention RNN** 
   * Looks at bunch of previous steps to figure out what note to play next (more longer term dependencies)
   * LFigure 1: A typical form of melody. The time signature
 of this musical piece is 4/4. The numerator means a bar
@@ -266,7 +267,7 @@ of 1 beat is a quarter note.everages an attention mechanism to learn longer-term
   * More mathematically complicated 
   * Notes more complex (polytonic)
   
-!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.54.12%20AM.png]
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.54.12%20AM.png)
   
 ---
 ## What's next 
@@ -285,17 +286,11 @@ Three novel reural neural networks (RNNs) used to generate symbolite melodies. T
 ## References
 * Google Tensorflow Magenta: Melody RNN https://github.com/magenta/magenta / https://magenta.tensorflow.org/
 * Generating Long-Term Structure in Songs and Stories https://magenta.tensorflow.org/2016/07/15/lookback-rnn-attention-rnn/
-* BENGIO <3. The Attention Method we use here: Neural Machine Translation by Jointly Learning to Align and Translate https://arxiv.org/abs/1409.0473
 * Convolutional Generative Adversarial Networks with Binary Neurons for Polyphonic Music Generation
 https://arxiv.org/abs/1804.09399
 * Multi-track Sequential Generative Adversarial Networks for Symbolic Music Generation and Accompaniment https://arxiv.org/abs/1709.06298
 * Demonstration of GAN based model for generating multi-track piano rolls https://salu133445.github.io/musegan/pdf/musegan-ismir2017-lbd-paper.pdf
-* Composing Music With Recurrent Neural Networks http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/
-* More on note sequences for dataset building https://developers.google.com/protocol-buffers/
-* Carnegie Mellon University https://www.link.cs.cmu.edu/melody-generator/
-* https://random-music-generators.herokuapp.com/melody
 * Valerio Velardo : Collection of videos on LSTM RNN for melody generation https://www.youtube.com/playlist?list=PL-wATfeyAMNr0KMutwtbeDCmpwvtul-Xz
-* The one and only Siraj Raval. AI for Music Composition: https://www.youtube.com/watch?v=NS2eqVsnJKo&ab_channel=SirajRaval
 * A Hierarchical Recurrent Neural Network for Symbolic Melody Generation https://arxiv.org/pdf/1712.05274.pdf
 *  Konstantin Lackner. Bachelor’s thesis “Composing a melody with long-short term memory (LSTM) Recurrent Neural Networks”https://konstilackner.github.io/LSTM-RNN-Melody-Composer-Website/Thesis_final01.pdf
 
