@@ -17,7 +17,7 @@ Machine Learning Generative Music using RNN LSTMs.
 --------
 
 ## Motivation 
-* Calculations for **stocastic music** take a long time when done by hand. Let's use machine learning to make it easier to generate melodies while reviewing basic math concepts like law of large numbers, probability theory, game theory, boolean algebra, markov chains, poisson law, and group theory
+* Calculations for **stocastic music** take a long time when done by hand. Stochastic SoundCloud uses machine learning to make it easier to generate melodies while reviewing basic math concepts like law of large numbers, probability theory, game theory, boolean algebra, markov chains, poisson law, and group theory
 * ***“If I were not a physicist, I would probably be a musician. I often think in music. I live my daydreams in music. I see my life in terms of music.”* – Albert Einstein**
 * In 1958 Iannis Xenakis used **Markov Chains, a stochastic process to make predictions on the future based on its present state**. He composed "Analogique" (pictured below) - The first musical composition that **models the probability of a note occuring after a sequence of notes**
   ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Iannis%20Xenakis%20Markov%20Chains.png)
@@ -45,9 +45,9 @@ Machine Learning Generative Music using RNN LSTMs.
 
 
 ---
-## Theory Classical Music Concepts 
+## Theory Classical Music Concepts  
 
-In order to generate classical music, we need to understand more about how a computer interprets music notes. Reading sheet music is like learning a new language where the symbols represent  pitch, speed, and rhythm of the melody. It is a sequential sucession of musical notes read in linear order.
+In order to generate classical music for Lucy’s New Mozart Mixtape, we need to understand more about how a computer interprets music notes. Reading sheet music is like learning a new language where the symbols represent  pitch, speed, and rhythm of the melody. It is a sequential sucession of musical notes read in linear order.
 
 **Piano scales**
 
@@ -98,14 +98,14 @@ Each song is an ordered list of pseudo-notes where the final vector will have di
 
 ## Theory Hierarchical RNN LSTM Architecture 
 
-**Why choose a RNN LSTM for music generation?**
+**Why choose a RNN LSTM for Stochastic SoundCloud music generation?**
 * Music is an art of time with a temporal structure 
 * Music has hierarchical structure with higher-level building blocks (phrases) made up of smaller recurrent patterns (bars)
 
 ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.15%20AM.png)
 
 
-**Machine Learning and Architecture**
+**Stochastic SoundCloud Machine Learning and Architecture**
 
 Train the RNN LSTM Recurrent Neural Network to compose a melody. Lookback and Attention RNNs are proposed to tackle the problem of creating melody’s long-term structure. It needs to be fed with a chord sequence and will then output a Prediction Matrix, which can be transformed into a piano roll matrix and finally into a melody MIDI file.
 
@@ -195,10 +195,10 @@ Run the **melody_rnn_generate script** from the base directory
 * num_steps = 128 
 * primer_melody = 60 (middle C on piano)
 
-RNN LSTM networks used in experiments had two hidden layers and each hidden layer had 256 hidden neurons with initial learning rate of 0.001. The minibatch size was 64 and to avoid over-fitting the dropout rate was set to a ratio of 0.5.
+Stochastic SoundCloud RNN LSTM networks used in experiments had two hidden layers and each hidden layer had 256 hidden neurons with initial learning rate of 0.001. The minibatch size was 64 and to avoid over-fitting the dropout rate was set to a ratio of 0.5.
 
 ---
-## Results 
+## Lucy’s New Mozart Mixtape Results 
 
 **Basic RNN**
   * Note by note basis (monotonic)
@@ -223,7 +223,7 @@ RNN LSTM networks used in experiments had two hidden layers and each hidden laye
     ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.54.12%20AM.png)
   
 ---
-## What's next 
+## What's next for Stochastic SoundCloud?
 * Preprocess the MIDI files - dataset was quite noisy (remove super high/low notes by discarding notes below C1 or above C8, decrease the ratio of empty bars)
 * Apply the Music Turing Test to compare outputs to human generated music. Can the discriminator tell if the generated music is real or fake?
 * Compare quantitative results of the three models usng binarization testing stratgies: Bernoulli sampling (BS) or hard thresholding (HT)
@@ -231,7 +231,7 @@ RNN LSTM networks used in experiments had two hidden layers and each hidden laye
 ---
 ## Conclusion 
 
-Three novel reural neural networks (RNNs) used to generate symbolite melodies. This music generated using machine learning techniques using Magenta from Google's Tensorflow AI. Using a LSTM long-short-term-memory model, with three specific RNN examples: Basic RNN, Lookback RNN, and Attention RNN. Outputs ~10 randomly generated output.mid music files that can be opened up on Mac's Garageband.
+Stochastic SoundCloud uses three novel reural neural networks (RNNs) used to generate symbolite melodies. This music generated using machine learning techniques using Magenta from Google's Tensorflow AI. Using a LSTM long-short-term-memory model, with three specific RNN examples: Basic RNN, Lookback RNN, and Attention RNN. Outputs ~10 randomly generated output.mid music files that can be opened up on Mac's Garageband.
 
 ---
 
