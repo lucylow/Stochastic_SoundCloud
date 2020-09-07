@@ -113,9 +113,7 @@ made sense butthe pieces were not musically coherent” and suggested to use lon
 
 Train the RNN LSTM Recurrent Neural Network to compose a melody. Lookback and Attention RNNs are proposed to tackle the problem of creating melody’s long-term structure. It needs to be fed with a chord sequence and will then output a Prediction Matrix, which can be transformed into a piano roll matrix and finally into a melody MIDI file.
 
-The number of samples is given by the difference between the number of timesteps of the piano
-roll matrix and the sequence length: number of samples = number of timestepspiano roll −
-sequence length.
+The number of samples is given by the difference between the number of timesteps of the piano roll matrix and the sequence length: number of samples = number of timestepspiano roll − sequence length.
 * 3-dimensional Input Matrix of size (number of samples, timesteps, input dimension)
 * 2-dimensional Target Matrix of size (number of samples, output dimension)
 
@@ -235,7 +233,7 @@ Stochastic SoundCloud RNN LSTM networks used in experiments had two hidden layer
     ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.54.12%20AM.png)
   
 ---
-## What's next for About Lucy’s New Mozart Mixtape?
+## What's next for Lucy’s New Mozart Mixtape?
 * Preprocess the MIDI files - dataset was quite noisy (remove super high/low notes by discarding notes below C1 or above C8, decrease the ratio of empty bars)
 * Apply the Music Turing Test to compare outputs to human generated music. Can the discriminator tell if the generated music is real or fake?
 * Compare quantitative results of the three models usng binarization testing stratgies: Bernoulli sampling (BS) or hard thresholding (HT)
@@ -243,7 +241,7 @@ Stochastic SoundCloud RNN LSTM networks used in experiments had two hidden layer
 ---
 ## Conclusion 
 
-Stochastic SoundCloud - Lucy’s New Mozart Mixtape uses three novel reural neural networks (RNNs) used to generate symbolite melodies. This music generated using machine learning techniques using Magenta from Google's Tensorflow AI. Using a LSTM long-short-term-memory model, with three specific RNN examples: Basic RNN, Lookback RNN, and Attention RNN. Outputs ~10 randomly generated output.mid music files that can be opened up on Mac's Garageband.
+Stochastic SoundCloud presenting Lucy’s New Mozart Mixtape uses three novel reural neural networks (RNNs) used to generate symbolite melodies. This music generated using machine learning techniques using Magenta from Google's Tensorflow AI. Using a LSTM long-short-term-memory model, with three specific RNN examples: Basic RNN, Lookback RNN, and Attention RNN. Outputs ~10 randomly generated output.mid music files that can be opened up on Mac's Garageband.
 
 ---
 
