@@ -1,6 +1,6 @@
 # Stochastic SoundCloud : Lucy’s New Mozart Mixtape 🔥
 
-Machine Learning Generative Music.
+Machine Learning Generative Music using RNN LSTMs.
 
 <div>
   
@@ -79,7 +79,7 @@ Musical Instrument Digital Interface (MIDI) maps musical note names to numbers m
 
 **One Hot Encoding of MIDI numbers**
 
-How do the MIDI numbers fit as an input in our LSTM-RNN neural network? One Hot Encoding.One Hot Vectors are a categorical binary representation where each row has one feature with a value of 1 and the other features with value 0.
+How do the MIDI numbers fit as an input in our RNN-LSTM neural network? One Hot Encoding.One Hot Vectors are a categorical binary representation where each row has one feature with a value of 1 and the other features with value 0.
 
 Example:
   * MIDI file #1 [Note 1, Note 2, Note3] ==> {[1,0,0], [0,1,0], [0,0,1] } One Hot Encoding
@@ -96,9 +96,9 @@ Each song is an ordered list of pseudo-notes where the final vector will have di
 
 ---
 
-## Theory Hierarchical LSTM RNN Architecture 
+## Theory Hierarchical RNN LSTM Architecture 
 
-**Why choose a LSTM RNN for music generation?**
+**Why choose a RNN LSTM for music generation?**
 * Music is an art of time with a temporal structure 
 * Music has hierarchical structure with higher-level building blocks (phrases) made up of smaller recurrent patterns (bars)
 
@@ -107,7 +107,7 @@ Each song is an ordered list of pseudo-notes where the final vector will have di
 
 **Machine Learning and Architecture**
 
-Train the LSTM Recurrent Neural Network to compose a melody. Lookback and Attention RNNs are proposed to tackle the problem of creating melody’s long-term structure. It needs to be fed with a chord sequence and will then output a Prediction Matrix, which can be transformed into a piano roll matrix and finally into a melody MIDI file.
+Train the RNN LSTM Recurrent Neural Network to compose a melody. Lookback and Attention RNNs are proposed to tackle the problem of creating melody’s long-term structure. It needs to be fed with a chord sequence and will then output a Prediction Matrix, which can be transformed into a piano roll matrix and finally into a melody MIDI file.
 
 
 Input to Target Matrix
@@ -116,7 +116,7 @@ input matrix
 * Prediction Target Matrix: One target sample consists of a 1-dimensional target vector
 
 ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.13.14%20PM.png)
-*The LSTM RNN consists of an input layer, an output layer and optionally hidden layers between the input and output layer. The chord sequences need to be within one octave and the belonging melodies within two octaves*
+*The RNN LSTM consists of an input layer, an output layer and optionally hidden layers between the input and output layer. The chord sequences need to be within one octave and the belonging melodies within two octaves*
 
 ---
 
@@ -160,7 +160,7 @@ input matrix
 ## Technical Tools
 * Python 3 (>= 3.5)
   * MIDI libraries for Python
-* [Magenta for Tensorflow](https://magenta.tensorflow.org/) with the 3 pre-trained LSTM models:
+* [Magenta for Tensorflow](https://magenta.tensorflow.org/) with the 3 pre-trained RNN LSTM models:
   1) Basic RNN (basic one hot encoding)
   2) Lookback RNN
   3) Attention RNN (looks at bunch of previous steps)
@@ -187,7 +187,7 @@ Run the **melody_rnn_generate script** from the base directory
 
 
 ---
-## Technical LSTM Machine Learning Model parameters
+## Technical RNN LSTM Machine Learning Model parameters
 * config = (choose options between basic_rnn, mono_rnn, lookback_rnn, attention_rnn)
 * bundle_file = (choose .mag file) 
 * output_dir = output directory within Stochastic_Soundloud folder 
@@ -195,7 +195,7 @@ Run the **melody_rnn_generate script** from the base directory
 * num_steps = 128 
 * primer_melody = 60 (middle C on piano)
 
-All LSTM networks used in experiments had two hidden layers and each hidden layer had 256 hidden neurons with initial learning rate of 0.001. The minibatch size was 64 and to avoid over-fitting the dropout rate was set to a ratio of 0.5.
+RNN LSTM networks used in experiments had two hidden layers and each hidden layer had 256 hidden neurons with initial learning rate of 0.001. The minibatch size was 64 and to avoid over-fitting the dropout rate was set to a ratio of 0.5.
 
 ---
 ## Results 
