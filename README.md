@@ -30,7 +30,7 @@ Machine Learning Generative Music using RNN LSTMs.
 
   ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Wiener_process_animated.gif)
 
-* Examples:
+* Pragmatic Examples:
   * **Bernoulli process** to study the repeatedly flipping of a coin where the probability of obtaining a head is p value is one and value of a tail is zero
   * **Weiner Brownian motion** process to study the diffusion of tiny particles suspended in fluid (also used as a solution to the Schrödinger equation)
   * **Poisson process** to study the number of phone calls occurring in a certain period of time
@@ -65,27 +65,28 @@ A scale is made of eight consecutive notes. The C major scale is composed of C, 
   ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/piano%20rolls.png)
   *The green bars next to the piano represents the piano roll of the score sheet*
 
+
 ----
 
 
 ## Theory Musical Instrument Digital Interface (MIDI) Representation  
 
-Musical Instrument Digital Interface (MIDI) maps musical note names to numbers making it easier for engineers to play, edit and record music. An example would be C4 key on piano == "60" MIDI. The data is then fed into the neural network as piano roll representation where
+Musical Instrument Digital Interface (MIDI) maps musical note names to numbers making it easier for engineers to play, edit and record music. An example would be C4 key on piano == "60" MIDI. The data is then fed into the neural network as piano roll representation where:
   * X axis = Time sequence
   * Y axis = Notes on a piano keyboard 
  
   ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.50.47%20AM.png)
-  *Example of C scale with ten notes C4, D4, E4, E4, F4, D4, G4, E4, D4, and C4 with corresponding MIDI numbers 60, 62, 64, 64, 65, 62, 67, 64, 62, and 60.*
+  *Example of piano C scale with ten notes C4, D4, E4, E4, F4, D4, G4, E4, D4, and C4 with corresponding MIDI numbers 60, 62, 64, 64, 65, 62, 67, 64, 62, and 60.*
 
 **One Hot Encoding of MIDI numbers**
 
-How do the MIDI numbers fit as an input in our RNN-LSTM neural network? One Hot Encoding.One Hot Vectors are a categorical binary representation where each row has one feature with a value of 1 (music note is on) and the other features with value 0 (music note of off).
+**How do the MIDI numbers fit as an input in our RNN-LSTM neural network?** One Hot Encoding. One Hot Vectors are a categorical binary representation of data where each row has one feature with a value of 1 (music note is on) and the other features with value 0 (music note of off).
 
-Example:
+Example of one hot encoding:
   * MIDI file #1 [Note 1, Note 2, Note3] ==> {[1,0,0], [0,1,0], [0,0,1] } One Hot Encoding
   * MIDI file #2 [Note 1, Note 2, Note3] ==> {[1,0,0], [0,1,0], [0,0,1]} One Hot Encoding
   
-Each song is an ordered list of pseudo-notes where the final vector will have dimensions where the Number of samples (nb) x Length of sequence (timesteps) x One-Hot Encoding of pseudo-notes. The melody at each timestep gets transformed into a 38-dimensional one-hot vector. There are 38 total kinds of events with 36 note-on events, 1 note-off event, and 1 no-event.
+Each song is an ordered list of pseudo-notes where the final vector will have dimensions where the Number of samples (nb) x Length of sequence (timesteps) x One-Hot Encoding of pseudo-notes. The melody at each timestep gets transformed into a 38-dimensional one-hot vector. There are 38 total kinds of events with 36 note-on events, 1 note-off event, and 1 no-event:
 
   ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.06.13%20PM.png)
 
@@ -99,38 +100,33 @@ Each song is an ordered list of pseudo-notes where the final vector will have di
 ## Theory Hierarchical RNN LSTM Architecture 
 
 **Why choose a RNN LSTM for Stochastic SoundCloud music generation?**
-* Music is an art of time with a temporal structure 
-* Music has hierarchical structure with higher-level building blocks (phrases) made up of smaller recurrent patterns (bars)
-* Recurrent Neural Networks (RNNs) are able to capture time dependencies between inputs.
-* Mozer Eck in 2002 found that for RNN composed music composed, the “local contours
-made sense butthe pieces were not musically coherent” and suggested to use long short-term memory Recurrent Neural Networks (RNN LSTM) for music instead of just RNN 
-* RNN LSTM designed to avoid the "rapid decay of backpropagated error",
+* Music is an art of time with a temporal structure and has hierarchical structure with higher-level building blocks (phrases) made up of smaller recurrent patterns (bars)
+* Recurrent Neural Networks are able to capture time dependencies between inputs.
+* Mozer Eck in 2002 found that for RNN composed music composed, the “local contours made sense but the pieces were not musically coherent” and suggested to use long short-term memory Recurrent Neural Networks (RNN LSTM) and avoids the rapid decay of "backpropagated error"
 
 ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.15%20AM.png)
 
 
 **Stochastic SoundCloud Machine Learning and Architecture**
 
-Train the RNN LSTM Recurrent Neural Network to compose a melody. Lookback and Attention RNNs are proposed to tackle the problem of creating melody’s long-term structure. It needs to be fed with a chord sequence and will then output a Prediction Matrix, which can be transformed into a piano roll matrix and finally into a melody MIDI file.
+Train the RNN LSTM Recurrent Neural Network to compose a melody. Lookback and Attention RNNs are proposed to tackle the problem of creating melody’s long-term structure. It needs to be fed with a chord sequence and will then output a Prediction Matrix, which can be transformed into a piano roll matrix and finally into a melody MIDI file. The number of samples is given by the difference between the number of timesteps of the piano roll matrix and the sequence length: number of samples = number of timestepspiano roll − sequence length:
 
-The number of samples is given by the difference between the number of timesteps of the piano roll matrix and the sequence length: number of samples = number of timestepspiano roll − sequence length.
-* 3-dimensional Input Matrix of size (number of samples, timesteps, input dimension)
-* 2-dimensional Target Matrix of size (number of samples, output dimension)
+* Input 3-dimensional Matrix of size: Number of samples, timesteps, input dimension
+* Target 2-dimensional Matrix of size: Number of samples, output dimension
 
-
-Input to Target Matrix
+Input to Target Matrix:
 * Network Input Matrix: One network input sample consists of a 2-dimensional
-input matrix
+input matrix. 
 * Prediction Target Matrix: One target sample consists of a 1-dimensional target vector
 
 ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.13.14%20PM.png)
-*The RNN LSTM consists of an input layer, an output layer and optionally hidden layers between the input and output layer. The chord sequences need to be within one octave and the belonging melodies within two octaves*
+*The RNN LSTM consists of an input layer, an output layer, and optionally hidden layers between the input and output layer. The chord sequences need to be within one octave and the belonging melodies within two octaves*
 
 ---
 
 ## Technical Music Dataset
 * **Use pre-trained data:**
-  * Mozart's Modern Classical composition Download and unzip classical music files from : https://github.com/lucylow/Stochastic_SoundCloud/blob/master/data/classical%20music%20dataset.zip
+  * Mozart's Modern Classical composition - Download and unzip classical music files from : https://github.com/lucylow/Stochastic_SoundCloud/blob/master/data/classical%20music%20dataset.zip
   * There are three possible .mag bundle files at https://github.com/lucylow/Stochastic_SoundCloud/tree/master/config%20files
     * Basic_rnn
     * Lookback_rnn
@@ -198,35 +194,31 @@ Run the **melody_rnn_generate script** from the base directory
 ## Technical RNN LSTM Machine Learning Model parameters
 Stochastic SoundCloud RNN LSTM networks used in experiments had two hidden layers and each hidden layer had 256 hidden neurons with initial learning rate of 0.001. The minibatch size was 64 and to avoid over-fitting the dropout rate was set to a ratio of 0.5:
 
-* config = (choose options between basic_rnn, mono_rnn, lookback_rnn, attention_rnn)
-* bundle_file = (choose .mag file) 
-* output_dir = output directory within Stochastic_Soundloud folder 
-* num_outputs = 10 (number of music files you want to output)
-* num_steps = 128 
-* primer_melody = 60 (middle C on piano)
+* Config = (choose options between basic_rnn, mono_rnn, lookback_rnn, attention_rnn)
+* Bundle_file = (choose .mag file) 
+* Output_dir = output directory within Stochastic_Soundloud folder 
+* Num_outputs = 10 (number of music files you want to output)
+* Num_steps = 128 
+* Primer_melody = 60 (middle C on piano)
 
 
 ---
 ## Lucy’s New Mozart Mixtape Results 
 
 **Basic RNN**
-  * Note by note basis (monotonic)
+  * Basic two-three notes with note by note basis (monotonic)
   * One-hot encoding == melody
   * Pitch range [48 to 84]
-  * Basic two-three notes
   
     ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%209.05.48%20PM.png)
   
 **Lookback RNN**
   * Patterns that occur over one or two measures/bars in a song resulting in more "repetitive" beats 
-  * Less basic than 1) and more musical structure with actual melodies since Lookback feature that makes the model repeat sequences easier
-  * Generating Long-term Structure in Songs and Stories paper
-  * Allows custom inputs and labels
+  * Less basic (Allows custom inputs and labels) than 1) and more musical structure with actual melodies since Lookback feature that makes the model repeat sequences easier
   * Lookback RNN outperformed the Attention RNN 
   
 **Attention RNN** 
   * Looks at bunch of previous steps to figure out what note to play next (more longer term dependencies)
-  * Generating Long-term Structure in Songs and Stories paper
   * More mathematically complicated 
   * Notes more complex (polytonic)
   
