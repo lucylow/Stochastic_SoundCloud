@@ -14,24 +14,36 @@ Machine Learning Generative Music
 ![CATS ARE SO CUTE](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/album_cover.png)
 *Album Cover. LUCY's New_Mozart_Mixtape now available on Stochastic_SoundCloud for the LOW price of $3.99. Featuring new up coming rapper TensorFlow_AI*
 
-• We propose a novel LSTM-based model for classical music generation.
+• A novel LSTM RNN based model for music generation.
 --------
 
 ## Motivation 
 * Calculations for stocastic music take a long time when done by hand - let's use machine learning and HPC to make it easier to generate original "Mozart" melodies using stochastic processes that will dominate the TOP MUSIC number-one hits 
 * Review concepts like law of large numbers, probability theory, game theory, boolean algebra, markov chains, poisson law, group theory and etc 
 * Music is older than language - automatic music became "algorithmic" where piano compositions can be broken down into fragments
-* In 1958 Iannis Xenakis used Markov Chains, a stochastic process by which a system can make predictions on the future based on its present state, to compose Analogique. Modelling the probability of a note occuring after a sequence of notes since all music is sequential. 
-* *“If I were not a physicist, I would probably be a musician. I often think in music. I live my daydreams in music. I see my life in terms of music.”* – Albert Einstein"
+* ***“If I were not a physicist, I would probably be a musician. I often think in music. I live my daydreams in music. I see my life in terms of music.”* – Albert Einstein"**
+* In 1958 Iannis Xenakis used Markov Chains, a stochastic process by which a system can make predictions on the future based on its present state, to compose Analogique (refer to image below). Modelling the probability of a note occuring after a sequence of notes since all music is sequential:
+
+!(music)[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Iannis%20Xenakis%20Markov%20Chains.png]
+*Iannis Xenakis's Analogique B. The first musical composition written using the method of "stocastic music"*
+
+
 ---
+
 ## Stocastic Process 
 * Probability theory where a math object is defined with random variables 
 * "Stochastic" == "an asymptotic evolution towards a stable state, towards a kind of goal, of stochos"
 * Pragmatic Examples:
   * **Bernoulli process** to study the repeatedly flipping of a coin where the probability of obtaining a head is p value is one and value of a tail is zero
-  * **Brownian motion** process to study the diffusion of tiny particles suspended in fluid (also used as a solution to the Schrödinger equation)
+  * **Weiner Brownian motion** process to study the diffusion of tiny particles suspended in fluid (also used as a solution to the Schrödinger equation)
   * **Poisson process** to study the number of phone calls occurring in a certain period of time
+
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Wiener_process_animated.gif]
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.15%20AM.png]
+
+
 ---
+
 ## Stochastic SoundCloud
 * The determined musical state is only partially determined by the preceding musical state where the concrete musical state n+2 follows after the state n+1 only with some probability
 * Apply stocashtic, chaotic, or determinatisic curves to different music composizitions and parameters fo create a sound transformation
@@ -41,47 +53,48 @@ Machine Learning Generative Music
 ## Theory Classical Music Concepts and Melody Representation
 * sequential data hence choose RNN/LSTM model
 
-Piano Roll representation 
-* a piano-roll representation is a binary-valued,
-scoresheet-like matrix representing the presence of notes
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.05.51%20PM.png]
+
+**Piano Roll Representation**
+* a piano-roll representation is a binary-valued, scoresheet-like matrix representing the presence of notes
 over different time steps
-* M-track piano-roll of one bar is represented
-as a tensor x ∈ {0, 1} R×S×M where R == time steps in a bar and S == the number of note candidates 
+* M-track piano-roll of one bar is represented as a tensor x ∈ {0, 1} R×S×M where R == time steps in a bar and S == the number of note candidates 
 * M-track piano-roll of T bars == x_hat = {−x_hat(t)} from t =1 to t = T 
 * piano-roll of each bar, each track, for boththe real and the generated data, is represented as a fixed-size
 matrix, which makes the use of neural network
 
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%208.56.36%20PM.png]
+*The red bar represents the piano roll of the score*
 
-*  MIDI is a protocol to play, edit and record music. It helps map note names to numbers. Ex C4 == "60"
+**MIDI Notation**
+* MIDI is a protocol to play, edit and record music. It helps map note names to numbers. Ex C4 == "60"
 * MIDI data fed into LSTM RNN as a piano roll representation 
   * x axis = time sequence
   * y axis = notes on a piano keyboard 
-  
-MIDI Notation
+
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.48.54%20AM.png]
+*Midi numbers for each note name on the piano key board.*
 
 melody, often known as tune, voice, or line, is a linear succession of musical notes, and each note represents the pitch and duration of a sound
 
 Each musical piece has a key chosen from 12 notes in an octave
 
-we can transpose all of the musical pieces to
-key C, while maintaining the relative relationship between
-notes. The generated pieces can be transposed to any key
+we can transpose all of the musical pieces to key C, while maintaining the relative relationship between
+notes. The generated pieces can be transposed to any key. About 99.83% of notes have pitches between C2 and C5
 
-about 99.83% of notes have pitches
-between C2 and C5
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.54%20AM.png]
 
-every bar was discretized into 16
-time steps. At every time step, there are 38 kinds of events
-(36 note-on events, one note-off event and one no-event),
-which are exclusive
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.50.47%20AM.png]
 
-So a 38-dimensional
-one-hot vector is used to represent the melody at every time
-step.
+every bar was discretized into 16 time steps. At every time step, there are 38 kinds of events (36 note-on events, one note-off event and one no-event), which are exclusive
+
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.06.13%20PM.png]
+So a 38-dimensional one-hot vector is used to represent the melody at every timestep.
 
 
-LSTM RNN needs to be trained with numeric values, the goal is to create a piano
-roll representation of the MIDI files. The time-field is showing its values in MIDI ticks quantized at 96 MIDI ticks per beat where one beat is quarter note:
+
+
+LSTM RNN needs to be trained with numeric values, the goal is to create a piano roll representation of the MIDI files. The time-field is showing its values in MIDI ticks quantized at 96 MIDI ticks per beat where one beat is quarter note:
 
 Figure 1: A typical form of melody. The time signature of this musical piece is 4/4. The numerator means a bar contains 4 beats, and the denominator means the time length
 of 1 beat is a quarter note.
@@ -111,6 +124,8 @@ LSTM RNN network
 The LSTM RNN consists of an input layer, an output layer and optionally hidden layers between the input and output layer. The chord sequences need to be within one octave and
 the belonging melodies within two octaves
 
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.13.14%20PM.png]
+*LSTM RNN architecture with the MIDI input matrix*
 
 Modelling the temporal structure 
 
@@ -118,7 +133,7 @@ Modelling the temporal structure
 **Melody Generation**
 General Architecture: Train the LSTM Recurrent Neural Network to compose a melody. Lookback and Attention RNNs are proposed to tackle the problem of creating melody’s long-term structure. It needs to be fed with a chord sequence and will then output a Prediction Matrix, which can be transformed into a piano roll matrix and finally into a melody MIDI file.
 
-[image of blue boxes here]
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.20.00%20AM.png]
 
 
 Input --> Target
@@ -225,13 +240,15 @@ Run the **melody_rnn_generate script** from the base directory
 ---
 ## Results 
 
-1) Basic_rnn
+**Basic_rnn**
   * Note by note basis (monotonic)
   * one-hot encoding == melody
   * pitch range [48 to 84]
   * Basic two-three notes
   
-2) Lookback_rnn
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%209.05.48%20PM.png] 
+  
+**Lookback_rnn**
   * Patterns that occur over one or two measures/bars in a song 
   * Lookback feature that makes the model repeat sequences easier
   * Generating Long-term Strucutre in Songs and Stories
@@ -240,7 +257,7 @@ Run the **melody_rnn_generate script** from the base directory
   * Results in more "repetitive" beats 
   * Lookback RNN outperformed the Attention RNN 
   
-3) Attention_rnn
+**Attention_rnn** 
   * Looks at bunch of previous steps to figure out what note to play next (more longer term dependencies)
   * LFigure 1: A typical form of melody. The time signature
 of this musical piece is 4/4. The numerator means a bar
@@ -248,6 +265,8 @@ contains 4 beats, and the denominator means the time length
 of 1 beat is a quarter note.everages an attention mechanism to learn longer-term structures
   * More mathematically complicated 
   * Notes more complex (polytonic)
+  
+!()[https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.54.12%20AM.png]
   
 ---
 ## What's next 
