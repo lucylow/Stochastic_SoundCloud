@@ -17,9 +17,11 @@ Machine Learning Generative Music
 --------
 
 ## Motivation 
-* Calculations for stocastic music take a long time when done by hand - let's use machine learning and HPC to make it easier using concepts like law of large numbers, probability theory, game theory, boolean algebra, markov chains, poisson law, group theory and etc to redefine the concept of "harmony"
-* To generates original "Mozart" melodies using stochastic processes that will dominate the TOP MUSIC number-one hits 
-* Physicist Denis Gabor had the idea of quantum representation for sound - musical quantas of sampled waveforms: “If I were not a physicist, I would probably be a musician. I often think in music. I live my daydreams in music. I see my life in terms of music.” – Albert Einstein"
+* Calculations for stocastic music take a long time when done by hand - let's use machine learning and HPC to make it easier to generate original "Mozart" melodies using stochastic processes that will dominate the TOP MUSIC number-one hits 
+* Review concepts like law of large numbers, probability theory, game theory, boolean algebra, markov chains, poisson law, group theory and etc 
+* Music is older than language - automatic music became "algorithmic" where piano compositions can be broken down into fragments
+* Iannis Xenakis and Stocastic Music : Modelling the probability of a note occuring after a sequence of notes since all music is sequential
+* *“If I were not a physicist, I would probably be a musician. I often think in music. I live my daydreams in music. I see my life in terms of music.”* – Albert Einstein"
 ---
 ## Stocastic Process 
 * Probability theory where a math object is defined with random variables 
@@ -31,9 +33,8 @@ Machine Learning Generative Music
 ---
 ## Stochastic SoundCloud
 * The determined musical state is only partially determined by the preceding musical state where the concrete musical state n+2 follows after the state n+1 only with some probability
-* Control pitch, duration, timbre, & dynamics
 * Apply stocashtic, chaotic, or determinatisic curves to different music composizitions and parameters fo create a sound transformation
-* Changing the pitch and amplitudes of music waveforms using parameters changing the effects to the spectral domain
+* Changing the pitch, duration, timbre, dynamics, and amplitudes of music waveforms using parameters changing the effects to the spectral domain
 
 ---
 
@@ -102,32 +103,59 @@ Run the **melody_rnn_generate script** from the base directory
 
 
 ---
-## Machine Learning Model: LSTM RNN 
-
-
+## LSTM Machine Learning Model parameters
+* config = (choose options between basic_rnn, mono_rnn, lookback_rnn, attention_rnn)
+* bundle_file = (choose .mag file) 
+* output_dir = output directory within Stochastic_Soundloud folder 
+* num_outputs = 10 (number of music files you want to output)
+* num_steps = 128 
+* primer_melody = 60 (middle C on piano)
 
 ---
 ## Results 
 
-1) Basic RNN 
+1) Basic_rnn
+  * Note by note basis 
+  * one-hot encoding == melody
+  * pitch range [48 to 84]
+  * Basic two-three notes
+  
+2) Lookback_rnn
+  * Patterns that occur over one or two measures/bars in a song 
+  * Generating Long-term Strucutre in Songs and Stories
+  * Less basic than 1) nd more musical structure with actual melodies 
+  * Allows custom inputs and labels
+  * Results in more "repetitive" beats 
+  
+3) Attention_rnn
+  * Looks at bunch of previous steps to figure out what note to play next (more longer term dependencies)
+  * More mathematically complicated 
+  * Notes more complex
+  
+---
+## What's next 
+* Apply the Music Turing Test to compare outputs to human generated music
 
+---
+## Conclusion 
 
-2) Lookback RNN
-
-
-3) Attention RNN
-
-
+Neural networks used to generate symbolite melodies. This music generated using machine learning techniques using Magenta from Google's Tensorflow AI. Using a LSTM long-short-term-memory model, with three specific RNN examples: Basic RNN, Lookback RNN, and Attention RNN. Outputs ~10 randomly generated output.mid music files that can be opened up on Mac's Garageband.
 
 ---
 
 ## References
-* Iannis Xenakis. Formalized Music 
 * Google Tensorflow Magenta: Melody RNN https://github.com/magenta/magenta / https://magenta.tensorflow.org/
 * Generating Long-Term Structure in Songs and Stories https://magenta.tensorflow.org/2016/07/15/lookback-rnn-attention-rnn/
 * The Attention Method we use here: Neural Machine Translation by Jointly Learning to Align and Translate https://arxiv.org/abs/1409.0473
+* Convolutional Generative Adversarial Networks with Binary Neurons for Polyphonic Music Generation
+https://arxiv.org/abs/1804.09399
+* Multi-track Sequential Generative Adversarial Networks for Symbolic Music Generation and Accompaniment https://arxiv.org/abs/1709.06298
+* Demonstration of GAN based model for generating multi-track piano rolls https://salu133445.github.io/musegan/pdf/musegan-ismir2017-lbd-paper.pdf
 * Composing Music With Recurrent Neural Networks http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/
 * More on note sequences for dataset building https://developers.google.com/protocol-buffers/
 * Carnegie Mellon University https://www.link.cs.cmu.edu/melody-generator/
 * https://random-music-generators.herokuapp.com/melody
+* The one and only Siraj Raval. AI for Music Composition: https://www.youtube.com/watch?v=NS2eqVsnJKo&ab_channel=SirajRaval
+* A Hierarchical Recurrent Neural Network for Symbolic Melody Generation https://arxiv.org/pdf/1712.05274.pdf
+
 
