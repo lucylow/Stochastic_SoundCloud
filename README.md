@@ -47,7 +47,7 @@ Machine Learning Generative Music using RNN LSTMs.
 ---
 ## Theory Classical Music Concepts  
 
-In order to generate classical music for Lucy’s New Mozart Mixtape, we need to understand more about how a computer interprets music notes. Reading sheet music is like learning a new language where the symbols represent  pitch, speed, and rhythm of the melody. It is a sequential sucession of musical notes read in linear order.
+In order to generate classical music for Lucy’s New Mozart Mixtape, we need to understand more about how a computer interprets music notes. Reading sheet music is like learning a new language where the symbols represent  pitch, speed, and rhythm of the melody. It is a sequential sucession of musical notes read in linear order. **How would you abstract a musical melody into numerical data that can be trained with a neural network?**
 
 **Piano scales**
 
@@ -79,7 +79,7 @@ Musical Instrument Digital Interface (MIDI) maps musical note names to numbers m
 
 **One Hot Encoding of MIDI numbers**
 
-How do the MIDI numbers fit as an input in our RNN-LSTM neural network? One Hot Encoding.One Hot Vectors are a categorical binary representation where each row has one feature with a value of 1 and the other features with value 0.
+How do the MIDI numbers fit as an input in our RNN-LSTM neural network? One Hot Encoding.One Hot Vectors are a categorical binary representation where each row has one feature with a value of 1 (music note is on) and the other features with value 0 (music note of off).
 
 Example:
   * MIDI file #1 [Note 1, Note 2, Note3] ==> {[1,0,0], [0,1,0], [0,0,1] } One Hot Encoding
@@ -89,7 +89,7 @@ Each song is an ordered list of pseudo-notes where the final vector will have di
 
   ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.06.13%20PM.png)
 
-  *Matrix of one-hot encoded MIDI data for first four piano bars. The default setting is 96 beats per beat but we set it to 4 ticks/ beat or resolution of 1/16th note per time step. Also note 0 here represents the note not being played.* 
+  *Matrix of one-hot encoded MIDI data for first four piano bars. The default setting is 96 beats per beat but we set it to 4 ticks/ beat or resolution of 1/16th note per time step. Each row represents the quantization of the time dimension.* 
 
 
 
@@ -101,6 +101,10 @@ Each song is an ordered list of pseudo-notes where the final vector will have di
 **Why choose a RNN LSTM for Stochastic SoundCloud music generation?**
 * Music is an art of time with a temporal structure 
 * Music has hierarchical structure with higher-level building blocks (phrases) made up of smaller recurrent patterns (bars)
+* Recurrent Neural Networks (RNNs) are able to capture time dependencies between inputs.
+* Mozer Eck in 2002 found that for RNN composed music composed, the “local contours
+made sense butthe pieces were not musically coherent” and suggested to use long short-term memory Recurrent Neural Networks (RNN LSTM) for music instead of just RNN 
+* RNN LSTM designed to avoid the "rapid decay of backpropagated error",
 
 ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.15%20AM.png)
 
@@ -108,6 +112,12 @@ Each song is an ordered list of pseudo-notes where the final vector will have di
 **Stochastic SoundCloud Machine Learning and Architecture**
 
 Train the RNN LSTM Recurrent Neural Network to compose a melody. Lookback and Attention RNNs are proposed to tackle the problem of creating melody’s long-term structure. It needs to be fed with a chord sequence and will then output a Prediction Matrix, which can be transformed into a piano roll matrix and finally into a melody MIDI file.
+
+The number of samples is given by the difference between the number of timesteps of the piano
+roll matrix and the sequence length: number of samples = number of timestepspiano roll −
+sequence length.
+* 3-dimensional Input Matrix of size (number of samples, timesteps, input dimension)
+* 2-dimensional Target Matrix of size (number of samples, output dimension)
 
 
 Input to Target Matrix
@@ -188,6 +198,8 @@ Run the **melody_rnn_generate script** from the base directory
 
 ---
 ## Technical RNN LSTM Machine Learning Model parameters
+Stochastic SoundCloud RNN LSTM networks used in experiments had two hidden layers and each hidden layer had 256 hidden neurons with initial learning rate of 0.001. The minibatch size was 64 and to avoid over-fitting the dropout rate was set to a ratio of 0.5:
+
 * config = (choose options between basic_rnn, mono_rnn, lookback_rnn, attention_rnn)
 * bundle_file = (choose .mag file) 
 * output_dir = output directory within Stochastic_Soundloud folder 
@@ -195,7 +207,6 @@ Run the **melody_rnn_generate script** from the base directory
 * num_steps = 128 
 * primer_melody = 60 (middle C on piano)
 
-Stochastic SoundCloud RNN LSTM networks used in experiments had two hidden layers and each hidden layer had 256 hidden neurons with initial learning rate of 0.001. The minibatch size was 64 and to avoid over-fitting the dropout rate was set to a ratio of 0.5.
 
 ---
 ## Lucy’s New Mozart Mixtape Results 
@@ -211,19 +222,20 @@ Stochastic SoundCloud RNN LSTM networks used in experiments had two hidden layer
 **Lookback RNN**
   * Patterns that occur over one or two measures/bars in a song resulting in more "repetitive" beats 
   * Less basic than 1) and more musical structure with actual melodies since Lookback feature that makes the model repeat sequences easier
-  * Generating Long-term Strucutre in Songs and Stories
+  * Generating Long-term Structure in Songs and Stories paper
   * Allows custom inputs and labels
   * Lookback RNN outperformed the Attention RNN 
   
 **Attention RNN** 
   * Looks at bunch of previous steps to figure out what note to play next (more longer term dependencies)
+  * Generating Long-term Structure in Songs and Stories paper
   * More mathematically complicated 
   * Notes more complex (polytonic)
   
     ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.54.12%20AM.png)
   
 ---
-## What's next for Stochastic SoundCloud?
+## What's next for About Lucy’s New Mozart Mixtape?
 * Preprocess the MIDI files - dataset was quite noisy (remove super high/low notes by discarding notes below C1 or above C8, decrease the ratio of empty bars)
 * Apply the Music Turing Test to compare outputs to human generated music. Can the discriminator tell if the generated music is real or fake?
 * Compare quantitative results of the three models usng binarization testing stratgies: Bernoulli sampling (BS) or hard thresholding (HT)
@@ -231,7 +243,7 @@ Stochastic SoundCloud RNN LSTM networks used in experiments had two hidden layer
 ---
 ## Conclusion 
 
-Stochastic SoundCloud uses three novel reural neural networks (RNNs) used to generate symbolite melodies. This music generated using machine learning techniques using Magenta from Google's Tensorflow AI. Using a LSTM long-short-term-memory model, with three specific RNN examples: Basic RNN, Lookback RNN, and Attention RNN. Outputs ~10 randomly generated output.mid music files that can be opened up on Mac's Garageband.
+Stochastic SoundCloud - Lucy’s New Mozart Mixtape uses three novel reural neural networks (RNNs) used to generate symbolite melodies. This music generated using machine learning techniques using Magenta from Google's Tensorflow AI. Using a LSTM long-short-term-memory model, with three specific RNN examples: Basic RNN, Lookback RNN, and Attention RNN. Outputs ~10 randomly generated output.mid music files that can be opened up on Mac's Garageband.
 
 ---
 
