@@ -27,7 +27,9 @@ Machine Learning Generative Music.
 ## Stocastic Process 
 * Probability theory where a math object is defined with random variables
 * **"Stochastic"** == "an asymptotic evolution towards a stable state, towards a kind of goal, of stochos"
-![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Wiener_process_animated.gif)
+
+  ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Wiener_process_animated.gif)
+
 * Examples:
   * **Bernoulli process** to study the repeatedly flipping of a coin where the probability of obtaining a head is p value is one and value of a tail is zero
   * **Weiner Brownian motion** process to study the diffusion of tiny particles suspended in fluid (also used as a solution to the Schrödinger equation)
@@ -36,7 +38,8 @@ Machine Learning Generative Music.
 ---
 
 ## Stochastic SoundCloud : Music is Sequential 
-* Music is older than language. Automatic music became "algorithmic" where piano compositions can be broken down into fragments
+
+* Music is older than language - automatic music became "algorithmic" where piano compositions can be broken down into fragments
 * The determined musical state is only partially determined by the preceding musical state where the concrete musical state n+2 follows after the state n+1 only with some probability
 * Changing the pitch, duration, timbre, dynamics, and amplitudes of music waveforms using parameters changing the effects to the spectral domain
 
@@ -75,7 +78,8 @@ Musical Instrument Digital Interface (MIDI) maps musical note names to numbers m
   *Example of C scale with ten notes C4, D4, E4, E4, F4, D4, G4, E4, D4, and C4 with corresponding MIDI numbers 60, 62, 64, 64, 65, 62, 67, 64, 62, and 60.*
 
 **One Hot Encoding of MIDI numbers**
-How do the MIDI numbers fit as an input in our LSTM-RNN neural network? One Hot Encoding.One Hot Vectors are a categorical binary representation where each row has one feature with a value of 1, and the other features with value 0.
+
+How do the MIDI numbers fit as an input in our LSTM-RNN neural network? One Hot Encoding.One Hot Vectors are a categorical binary representation where each row has one feature with a value of 1 and the other features with value 0.
 
 Example:
   * MIDI file #1 [Note 1, Note 2, Note3] ==> {[1,0,0], [0,1,0], [0,0,1] } One Hot Encoding
@@ -85,7 +89,7 @@ Each song is an ordered list of pseudo-notes where the final vector will have di
 
   ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.06.13%20PM.png)
 
-  *2D Matrix of one-hot encoded MIDI data for first four piano bars. The default setting is 96 beats per beat but we set it to 4 ticks/ beat or resolution of 1/16th note per time step. Also note 0 here represents the note not being played* 
+  *Matrix of one-hot encoded MIDI data for first four piano bars. The default setting is 96 beats per beat but we set it to 4 ticks/ beat or resolution of 1/16th note per time step. Also note 0 here represents the note not being played.* 
 
 
 
@@ -103,19 +107,16 @@ Each song is an ordered list of pseudo-notes where the final vector will have di
 
 **Machine Learning and Architecture**
 
-![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.13.14%20PM.png)
-*The LSTM RNN consists of an input layer, an output layer and optionally hidden layers between the input and output layer. The chord sequences need to be within one octave and the belonging melodies within two octaves*
-
-**Melody Generation**
-
 Train the LSTM Recurrent Neural Network to compose a melody. Lookback and Attention RNNs are proposed to tackle the problem of creating melody’s long-term structure. It needs to be fed with a chord sequence and will then output a Prediction Matrix, which can be transformed into a piano roll matrix and finally into a melody MIDI file.
 
 
 Input to Target Matrix
-* Network Input Matrix: one network input sample consists of a 2-dimensional
+* Network Input Matrix: One network input sample consists of a 2-dimensional
 input matrix
-* Prediction Target Matrix :one target sample consists of a 1-dimensional target vector
+* Prediction Target Matrix: One target sample consists of a 1-dimensional target vector
 
+![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-06%20at%2011.13.14%20PM.png)
+*The LSTM RNN consists of an input layer, an output layer and optionally hidden layers between the input and output layer. The chord sequences need to be within one octave and the belonging melodies within two octaves*
 
 ---
 
