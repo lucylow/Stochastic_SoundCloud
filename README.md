@@ -4,7 +4,7 @@ Machine Learning Generative Music using RNN LSTMs.
 
 <div>
   
-  [![Status](https://img.shields.io/badge/status-work--in--progress-success.svg)]()
+  [![Status](https://img.shields.io/badge/status-active-success.svg)]()
   [![GitHub Issues](https://img.shields.io/github/issues/lucylow/Stochastic_SoundCloud.svg)](https://github.com/lucylow/Stochastic_SoundCloud/issues)
   [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/lucylow/Stochastic_SoundCloud.svg)](https://github.com/lucylow/Stochastic_SoundCloud/pulls)
   [![License](https://img.shields.io/bower/l/bootstrap)]()
