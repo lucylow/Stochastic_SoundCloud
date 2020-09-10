@@ -19,7 +19,7 @@ Machine Learning Generative Music using RNN LSTMs.
 ## Motivation 
 * Calculations for **stocastic music** take a long time when done by hand. Stochastic SoundCloud uses machine learning to make it easier to generate melodies while reviewing basic math concepts like law of large numbers, probability theory, game theory, boolean algebra, markov chains, poisson law, and group theory
 * ***“If I were not a physicist, I would probably be a musician. I often think in music. I live my daydreams in music. I see my life in terms of music.”* – Albert Einstein**
-* In 1958 Iannis Xenakis used **Markov Chains, a stochastic process to make predictions on the future based on its present state**. He composed "Analogique" (pictured below) - The first musical composition that **models the probability of a note occuring after a sequence of notes**
+* In 1958 Iannis Xenakis used **Markov Chains, a stochastic process to make predictions on the future based on its present state**. He composed "Analogique" (pictured below) - The first musical composition that **models the probability of a note occuring after a sequence of notes:**
   ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Iannis%20Xenakis%20Markov%20Chains.png)
 
 ---
@@ -30,7 +30,7 @@ Machine Learning Generative Music using RNN LSTMs.
 
   ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Wiener_process_animated.gif)
 
-* Pragmatic Examples:
+* Pragmatic examples:
   * **Bernoulli process** to study the repeatedly flipping of a coin where the probability of obtaining a head is p value is one and value of a tail is zero
   * **Weiner Brownian motion** process to study the diffusion of tiny particles suspended in fluid (also used as a solution to the Schrödinger equation)
   * **Poisson process** to study the number of phone calls occurring in a certain period of time
@@ -56,11 +56,15 @@ A scale is made of eight consecutive notes. The C major scale is composed of C, 
 ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.54%20AM.png)
 
 **Piano Roll Representation**
-* Binary-valued scoresheet-like matrix representing music notes over different time steps
-* M-track piano roll representation: 
-  * one bar is represented as a tensor x ∈ {0, 1} R×S×M where R == time steps in a bar and S == the number of note candidates 
+* Piano roll representation is a music storing data type where a music piece us represented by a score-like binary valued (0 XOR 1) matrix representing music notes over different time steps
+* Let M == multi-track music piece with a set of piano rolls representing music pieces. 
+* M-track piano roll representation:
+  * M-track musical piece will be converted into a set of M piano rolls
+  * One bar is represented as a tensor x ∈ {0, 1} R×S×M where R == time steps in a bar and S == the number of note candidates 
   * T bars is represented as x_hat = {−x_hat(t)} from t =1 to t = T 
-* Piano-roll of each bar, each track, for the real and the generated data is represented as a fixed-size matrix
+  
+* Piano roll of each bar, each track, for the real and the generated data is represented as a fixed-size matrix. For example the piano roll for a bar in 4/4 time with one track can be represented mathematically as a 96 x 128 matrix for M tracks. Converting this, a bar in 4/4 time with M tracks can be represented as a 96 x 128 x M tensor.
+
 
   ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/piano%20rolls.png)
   *The green bars next to the piano represents the piano roll of the score sheet*
@@ -72,8 +76,10 @@ A scale is made of eight consecutive notes. The C major scale is composed of C, 
 ## Theory Musical Instrument Digital Interface (MIDI) Representation  
 
 Musical Instrument Digital Interface (MIDI) maps musical note names to numbers making it easier for engineers to play, edit and record music. An example would be C4 key on piano == "60" MIDI. The data is then fed into the neural network as piano roll representation where:
-  * X axis = Time sequence
-  * Y axis = Notes on a piano keyboard 
+  * X axis = Time sequence 
+    * Absolute timing where we use the actual timing of each note occurrence
+    * Symbolic timing where the tempo data is removed as a normaliziation factor such that each beat has the same length
+  * Y axis = Notes on a piano keyboard (pitch or velocities of the notes)
  
   ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.50.47%20AM.png)
   *Example of piano C scale with ten notes C4, D4, E4, E4, F4, D4, G4, E4, D4, and C4 with corresponding MIDI numbers 60, 62, 64, 64, 65, 62, 67, 64, 62, and 60.*
