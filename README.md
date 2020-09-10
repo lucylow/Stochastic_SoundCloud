@@ -51,13 +51,12 @@ In order to generate classical music for Lucy’s New Mozart Mixtape, we need to
 
 **Piano scales**
 
-A scale is made of eight consecutive notes. The C major scale is composed of C, D, E, F, G, A, B, C. This is imporatant because we can transpose all of the musical pieces to key C, while maintaining the relative relationship between notes. The generated pieces can be transposed to any key. 
+A scale is made of eight consecutive notes. The C major scale is composed of C, D, E, F, G, A, B, C. This is important because we can transpose all of the musical pieces to key C, while maintaining the relative relationship between notes. The generated pieces can be transposed to any key. 
 
 ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.54%20AM.png)
 
 **Piano Roll Representation**
-* Piano roll representation is a music storing data type where a music piece us represented by a score-like binary valued (0 XOR 1) matrix representing music notes over different time steps
-* Let M == multi-track music piece with a set of piano rolls representing music pieces. 
+* Piano roll representation is a music storing data type where a music piece us represented by a score-like binary valued (0 XOR 1) matrix representing music notes over different time steps. Let M == multi-track music piece with a set of piano rolls representing music pieces. 
 * M-track piano roll representation:
   * M-track musical piece will be converted into a set of M piano rolls
   * One bar is represented as a tensor x ∈ {0, 1} R×S×M where R == time steps in a bar and S == the number of note candidates 
