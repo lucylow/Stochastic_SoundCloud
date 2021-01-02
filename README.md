@@ -108,6 +108,7 @@ Each song is an ordered list of pseudo-notes where the final vector will have di
 * Music is an art of time with a temporal structure and has hierarchical structure with higher-level building blocks (phrases) made up of smaller recurrent patterns (bars)
 * Recurrent Neural Networks are able to capture time dependencies between inputs.
 * Mozer Eck in 2002 found that for RNN composed music composed, the “local contours made sense but the pieces were not musically coherent” and suggested to use long short-term memory Recurrent Neural Networks (RNN LSTM) and avoids the rapid decay of "backpropagated error"
+* Audio classication features include extracting audio features and representations, training parameter tune and evaluating classifiers of audio segments,  performing supervised and unsupervised audio segmentation (ex. joint segmentation classification, emotion recognition, or speaker diarization), or the ability to apply dimensionality reduction to visualize audio data and content similarities
 
 ![](https://github.com/lucylow/Stochastic_SoundCloud/blob/master/images/Screen%20Shot%202020-09-07%20at%202.47.15%20AM.png)
 
@@ -252,5 +253,6 @@ https://arxiv.org/abs/1804.09399
 * Valerio Velardo : Collection of videos on LSTM RNN for melody generation https://www.youtube.com/playlist?list=PL-wATfeyAMNr0KMutwtbeDCmpwvtul-Xz
 * A Hierarchical Recurrent Neural Network for Symbolic Melody Generation https://arxiv.org/pdf/1712.05274.pdf
 *  Konstantin Lackner. Bachelor’s thesis “Composing a melody with long-short term memory (LSTM) Recurrent Neural Networks”https://konstilackner.github.io/LSTM-RNN-Melody-Composer-Website/Thesis_final01.pdf
+* Python Audio Analysis Library: Feature Extraction, Classification, Segmentation and Applications https://github.com/tyiannak/pyAudioAnalysis
 
 
